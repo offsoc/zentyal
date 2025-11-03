@@ -2,5 +2,9 @@
 Description=Zentyal fetchmail daemon
 
 [Service]
-ExecStart=/bin/su fetchmail -c '/usr/bin/fetchmail --nodetach -f /etc/zentyal-fetchmail.rc'
-Restart=on-failure
+Type=simple
+User=fetchmail
+ExecStart=/usr/bin/fetchmail --nodetach -f /etc/zentyal-fetchmail.rc
+Restart=always
+SuccessExitStatus=1
+RestartSec=30
